@@ -1,10 +1,16 @@
 package quintaAula;
-//falaremos sobre construtores
+//falaremos sobre construtores e sobre static
 public class Conta {
     private double saldo;
     private int agencia;
     private int numero;
     private Cliente titular;
+    //imagine que fosse interessante saber o número total de contas criadas
+    //logo criariamos um atributo total, porém ele seria de instancia e a cada vez
+    //que fosse dado o new seria um novo atributo de instancia, esse não é nosso objetivo
+    //para conseguirmos um total de contas precisamos de um atributo que não é do objeto
+    //e sim da classe e é ai que entra o static
+    private static int total;
 
     //construtores:
     /*
@@ -20,7 +26,11 @@ public class Conta {
         this.agencia = agencia;
         this.numero = numero;
 
-        System.out.println("Criamos a conta de número " + numero);
+        total++;
+
+        //para acessarmos um atributo da classe usamos o nome dela,
+        //até funcionaria chamando através de um objeto mas não faria sentido
+        System.out.println("Esta é a  " + Conta.total + "° conta");
     }
 
     public void deposita(double valor) {
@@ -71,5 +81,11 @@ public class Conta {
 
     public void setTitular(Cliente titular) {
         this.titular = titular;
+    }
+
+    //como estamos falando de um atributo estático, devemos dar acesso nele através da classe e não
+    //de uma instancia, logo o método tb será static
+    public static int getTotal() {
+        return total;
     }
 }
