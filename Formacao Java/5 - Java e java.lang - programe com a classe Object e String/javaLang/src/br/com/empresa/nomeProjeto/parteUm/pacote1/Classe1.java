@@ -5,8 +5,17 @@ package br.com.empresa.nomeProjeto.parteUm.pacote1;
 import br.com.empresa.nomeProjeto.parteUm.pacote2.Classe3;
 
 //só então vem a classe
+
+/**
+ * Isto é um javadoc, uma documentação de dev para dev
+ * @author Gabriel
+ */
 public class Classe1 {
 
+    /**
+     * método main
+     * @param args
+     */
     public static void main(String[] args) {
         //Classe 4 está no mesmo pacote então n precisa de import nem do FQN
         Classe4 classe4 = new Classe4();
