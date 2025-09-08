@@ -150,12 +150,275 @@ do {
 } while (x < 5);
 ```
 
-For-Each
+#### For-Each
 Percorre elementos de arrays e coleções:
 
 ```java
 int[] numeros = {1, 2, 3};
 for (int n : numeros) {
     System.out.println(n);
+}
+```
+
+---
+## Orientação a Objetos (OO)
+A **Orientação a Objetos (OO)** é um paradigma de programação que organiza o código em **objetos**, que representam entidades do mundo real ou conceitos abstratos.  
+Cada objeto combina **dados** (atributos) e **comportamentos** (métodos), facilitando a reutilização, a manutenção e a escalabilidade do software.
+
+## 📌 Conceitos Fundamentais
+
+### Classe
+- É o **molde** ou **modelo** para criar objetos.
+- Define os **atributos** (características) e **métodos** (ações) que os objetos terão.
+
+```java
+class Carro {
+    String cor;
+    int ano;
+
+    void acelerar() {
+        System.out.println("O carro está acelerando!");
+    }
+}
+```
+
+### Objeto
+
+- É uma instância de uma classe.
+- Cada objeto tem seus próprios valores de atributos.
+
+```java
+Carro carro1 = new Carro();
+carro1.cor = "Vermelho";
+carro1.ano = 2020;
+
+Carro carro2 = new Carro();
+carro2.cor = "Preto";
+carro2.ano = 2022;
+```
+
+### Interfaces
+- É um contrato que define um conjunto de métodos que uma classe deve implementar.
+- Uma classe pode implementar várias interfaces, superando a limitação da herança simples.
+- Não pode ser instanciada (é uma classe de métodos abstratos)
+
+```java
+interface Volante {
+    void girarEsquerda();
+    void girarDireita();
+}
+
+class Carro implements Volante {
+    public void girarEsquerda() {
+        System.out.println("Carro virou à esquerda.");
+    }
+
+    public void girarDireita() {
+        System.out.println("Carro virou à direita.");
+    }
+}
+```
+
+### Pilares da Orientação a Objetos
+
+#### Abstração
+- Representa apenas as informações essenciais de um objeto, escondendo detalhes desnecessários. Foca no que um objeto faz, e não em como ele faz.
+
+```java
+interface ControleRemoto {
+    void ligar();
+    void desligar();
+}
+```
+```java
+abstract class Animal {
+    void emitirSom();
+}
+```
+- não podem ser instanciadas
+
+#### Encapsulamento
+- Protege os detalhes internos de um objeto.
+- O acesso aos atributos deve ser feito através de getters e setters, controlando como os dados podem ser manipulados.
+
+```java
+class ContaBancaria {
+    private double saldo;
+
+    public void depositar(double valor) {
+        saldo += valor;
+    }
+
+    public double getSaldo() {
+        return saldo;
+    }
+}
+```
+
+#### Herança
+- Permite que uma classe herde atributos e métodos de outra.
+- Promove reutilização de código e hierarquia entre classes.
+- Define uma relação "é-um" (exemplo: um Cachorro é um Animal).
+
+```java
+class Animal {
+    void emitirSom() {
+        System.out.println("Som genérico");
+    }
+}
+
+class Cachorro extends Animal {
+    @Override
+    void emitirSom() {
+        System.out.println("Latido");
+    }
+}
+```
+
+#### Polimorfismo
+- Permite que um mesmo método tenha múltiplos comportamentos.
+- O método executado depende do tipo do objeto em tempo de execução.
+
+```java
+Animal a1 = new Cachorro();
+Animal a2 = new Gato();
+
+a1.emitirSom(); // "Latido"
+a2.emitirSom(); // "Miau"
+
+// Cachorro e Gato podem ter outros métodos próprios, mas a partir de uma variavel
+// de Animal ele só pode usar os métodos genéricos da classe
+```
+
+#### Sealed Classes (Java 17+)
+- As **sealed classes** permitem **controlar quais classes podem estender outra classe**.  
+Elas foram introduzidas no Java 17 para dar mais **segurança**, **clareza** e **controle** em hierarquias de classes.
+
+- Sem o `sealed`, qualquer classe poderia ser estendida livremente. Com ele, você define **quem pode herdar** e o compilador garante essa restrição.
+
+##### `sealed`
+- Usada para declarar uma classe **selada**, ou seja, que **só pode ser herdada** pelas classes explicitamente listadas.
+- Junto dela, usamos a cláusula **`permits`** para dizer quais classes estão autorizadas.
+
+```java
+sealed class Forma permits Circulo, Retangulo, Triangulo { }
+
+final class Circulo extends Forma { }
+final class Retangulo extends Forma { }
+final class Triangulo extends Forma { }
+```
+
+##### final
+- Quando usada em uma subclasse de uma sealed class, significa que essa subclasse não pode ser estendida.
+```java
+sealed class Veiculo permits Carro, Moto { }
+
+final class Carro extends Veiculo { } // não pode ser herdada
+final class Moto extends Veiculo { }  // não pode ser herdada
+```
+
+##### non-sealed
+- Remove a restrição do sealed, permitindo que qualquer classe herde daquela subclasse.
+- É útil quando você quer que apenas um ponto da hierarquia seja flexível.
+```java
+sealed class Forma permits Circulo, Retangulo { }
+
+final class Circulo extends Forma { } // fechado
+non-sealed class Retangulo extends Forma { } // aberto
+
+```
+### Quando usar Herança, Interface?
+- Herança: quando existe uma relação clara de "é-um" e você quer reaproveitar código.
+
+- Interface: quando você precisa definir um contrato comum entre classes de naturezas diferentes.
+
+#### Exemplo de comparação prática:
+
+- Animal pode ser uma classe base.
+
+- Corredor pode ser uma interface que Cachorro e Cavalo implementam.
+
+### Benefícios da Orientação a Objetos
+
+- Reutilização de código.
+
+- Organização que reflete o mundo real.
+
+- Manutenção facilitada.
+
+- Escalabilidade para sistemas grandes.
+
+- Flexibilidade com interfaces.
+
+- Controle com sealed classes, evitando hierarquias descontroladas.
+
+### modificadores: 
+- public - visivel para todos em qualquer lugar
+- private - visivel so na classe
+- protected - visivel no pacote e publico para filhos (independente do pacote)
+- package (quando n tem nada na frente) - visivel no pacote
+
+### Object
+Em Java, todas as classes herdam implicitamente da classe base `java.lang.Object`. Essa classe fornece métodos fundamentais que podem ser sobrescritos para controlar o comportamento do seu objeto, sendo os principais:
+
+- `toString()`
+- `equals(Object obj)`
+- `hashCode()`
+- `clone()`
+- `finalize()` (menos usado hoje)
+
+#### `toString()`
+- Propósito: Retornar uma representação textual do objeto, útil para debug e logs.
+- Boa prática: Retornar informações significativas do objeto, evitando expor dados sensíveis.
+
+Exemplo:
+
+```java
+public class Pessoa {
+    private String nome;
+    private int idade;
+
+    public Pessoa(String nome, int idade) {
+        this.nome = nome;
+        this.idade = idade;
+    }
+
+    @Override
+    public String toString() {
+        return "Pessoa{" +
+               "nome='" + nome + '\'' +
+               ", idade=" + idade +
+               '}';
+    }
+}
+```
+
+#### `equals(Object obj)`
+- Propósito: Comparar se dois objetos são “semânticamente iguais”.
+- Boa prática: Sobrescreva sempre que a igualdade lógica do seu objeto não for apenas por referência (==) - lembrando que variaveis de referencia guardam apenas apontam para o objeto e não guardam o objeto em si.
+
+Exemplo:
+
+```java
+@Override
+public boolean equals(Object obj) {
+    if (this == obj) return true;
+    if (obj == null || getClass() != obj.getClass()) return false;
+    Pessoa pessoa = (Pessoa) obj;
+    return idade == pessoa.idade && nome.equals(pessoa.nome);
+}
+```
+
+#### `hashCode()`
+- Propósito: Gerar um valor inteiro baseado nos atributos do objeto, usado em coleções como HashMap e HashSet.
+- Regra importante: Sempre que sobrescrever equals(), também sobrescreva hashCode().
+- Boa prática: Usar todos os campos que definem a igualdade do objeto.
+
+Exemplo:
+
+```java
+@Override
+public int hashCode() {
+    return Objects.hash(nome, idade);
 }
 ```
