@@ -1,7 +1,4 @@
-# JAVA
-Repositório onde colocarei sintaxe e exemplos 
-
-## Primeiro código Java
+# Primeiro código Java
 
 ```java
 public class Main {
@@ -13,7 +10,7 @@ public class Main {
 
 ---
 
-## Variáveis
+# Variáveis
 
 Uma **variável** é um espaço na memória usado para armazenar valores durante a execução do programa.  
 No Java, cada variável tem **tipo** (define o que pode armazenar) e **nome** (identificador).
@@ -23,7 +20,7 @@ No Java, cada variável tem **tipo** (define o que pode armazenar) e **nome** (i
 tipo nome = valor;
 ```
 
-### Tipos Primitivos
+## Tipos Primitivos
 Esses tipos armazenam valores simples diretamente na memória.
 
 | Tipo     | Tamanho | Valor Padrão | Faixa de Valores |
@@ -39,7 +36,7 @@ Esses tipos armazenam valores simples diretamente na memória.
 
 > \*O tamanho de `boolean` não é definido exatamente em bits na JVM, mas em geral ocupa 1 byte.
 
-### Tipos de Referência
+## Tipos de Referência
 Esses tipos armazenam **endereços** de memória para objetos, não os valores diretamente.
 
 | Tipo           | Exemplo                      | Valor Padrão |
@@ -49,7 +46,7 @@ Esses tipos armazenam **endereços** de memória para objetos, não os valores d
 | Interfaces     | `Runnable r;`                | `null` |
 | Arrays         | `int[] numeros = {1,2,3};`   | `null` (se não inicializado) |
 
-#### Tipos Especiais
+## Tipos Especiais
 | Tipo      | Uso                                               |
 |-----------|---------------------------------------------------|
 | `var`     | Inferência de tipo local (Java 10+)               |
@@ -57,7 +54,7 @@ Esses tipos armazenam **endereços** de memória para objetos, não os valores d
 | `enum`    | Conjunto fixo de constantes nomeadas              |
 | `null`    | Representa ausência de valor para tipos de referência |
 
-### Observações Importantes
+## Observações Importantes
 - Tipos primitivos **não aceitam `null`**.
 - Tipos de referência **aceitam `null`**.
 - Conversões:
@@ -66,7 +63,7 @@ Esses tipos armazenam **endereços** de memória para objetos, não os valores d
 - Classes **Wrapper** permitem tratar tipos primitivos como objetos:
   - `Integer`, `Double`, `Character`, `Boolean`, etc.
 
-### Operadores Aritméticos
+# Operadores Aritméticos
 | Operador | Descrição       | Exemplo | Resultado |
 | -------- | --------------- | ------- | --------- |
 | +        | Adição          | 5 + 3   | 8         |
@@ -77,7 +74,7 @@ Esses tipos armazenam **endereços** de memória para objetos, não os valores d
 | ++       | Incremento      | x++     | x + 1     |
 | --       | Decremento      | x--     | x - 1     |
 
-### Operadores Lógicos
+# Operadores Lógicos
 | Operador | Descrição | Exemplo         | Resultado |
 | -------- | --------- | --------------- | --------- |
 | &&       | E (AND)   | true && false   | false     |
@@ -86,9 +83,9 @@ Esses tipos armazenam **endereços** de memória para objetos, não os valores d
 
 ---
 
-## Estruturas de Controle
+# Estruturas de Controle
 
-### if / else if / else
+## if / else if / else
 Permite executar blocos de código apenas se a condição for verdadeira.
 
 ```java
@@ -103,7 +100,7 @@ if (idade >= 18) {
 }
 ```
 
-### switch
+## switch
 Usado para selecionar entre múltiplas opções.
 
 ```java
@@ -117,9 +114,9 @@ switch (dia) {
 }
 ```
 
-### Laços de Repetição (Loops)
+## Laços de Repetição (Loops)
 
-#### For
+### For
 Usado quando se sabe o número de repetições:
 
 ```java
@@ -128,7 +125,7 @@ for (int i = 0; i < 5; i++) {
 }
 ```
 
-#### While
+### While
 Executa enquanto a condição for verdadeira:
 
 ```java
@@ -139,7 +136,7 @@ while (contador < 5) {
 }
 ```
 
-#### Do-While
+### Do-While
 Executa pelo menos uma vez, depois testa a condição:
 
 ```java
@@ -150,7 +147,7 @@ do {
 } while (x < 5);
 ```
 
-#### For-Each
+### For-Each
 Percorre elementos de arrays e coleções:
 
 ```java
@@ -161,11 +158,11 @@ for (int n : numeros) {
 ```
 
 ---
-## Orientação a Objetos (OO)
+# Orientação a Objetos (OO)
 A **Orientação a Objetos (OO)** é um paradigma de programação que organiza o código em **objetos**, que representam entidades do mundo real ou conceitos abstratos.  
 Cada objeto combina **dados** (atributos) e **comportamentos** (métodos), facilitando a reutilização, a manutenção e a escalabilidade do software.
 
-## 📌 Conceitos Fundamentais
+## Conceitos Fundamentais
 
 ### Classe
 - É o **molde** ou **modelo** para criar objetos.
@@ -356,7 +353,10 @@ non-sealed class Retangulo extends Forma { } // aberto
 - public - visivel para todos em qualquer lugar
 - private - visivel so na classe
 - protected - visivel no pacote e publico para filhos (independente do pacote)
-- package (quando n tem nada na frente) - visivel no pacote
+- package (default - quando n tem nada na frente) - visivel no pacote
+- static - pertence a classe
+- abstract - torna a classe/método abstrato (não tem implementação) - para classes impede que elas sejam instanciadas
+- final - algo imutável
 
 ### Object
 Em Java, todas as classes herdam implicitamente da classe base `java.lang.Object`. Essa classe fornece métodos fundamentais que podem ser sobrescritos para controlar o comportamento do seu objeto, sendo os principais:
@@ -364,8 +364,6 @@ Em Java, todas as classes herdam implicitamente da classe base `java.lang.Object
 - `toString()`
 - `equals(Object obj)`
 - `hashCode()`
-- `clone()`
-- `finalize()` (menos usado hoje)
 
 #### `toString()`
 - Propósito: Retornar uma representação textual do objeto, útil para debug e logs.
