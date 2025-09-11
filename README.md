@@ -5,5 +5,6 @@ Repositório onde colocarei sintaxe e exemplos
 1. primeirosPassosAOrientacaoAObjetos
 2. exceptionsETratamento
 3. collections
-4. interfaces funcionais
-5. record
+4. record
+5. interfacesFuncionaisELambda
+6. stream
