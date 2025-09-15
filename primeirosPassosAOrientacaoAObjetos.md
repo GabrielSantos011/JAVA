@@ -287,6 +287,24 @@ a2.emitirSom(); // "Miau"
 // de Animal ele só pode usar os métodos genéricos da classe
 ```
 
+#### Sobreescrita
+Sobrescrita (ou method overriding) acontece quando uma subclasse fornece uma nova implementação para um método herdado da superclasse ou de uma interface.
+
+- O método deve ter a mesma assinatura (nome, parâmetros e tipo de retorno compatível).
+
+- O acesso não pode ser mais restritivo que o método original.
+
+- @Override para garantir que está realmente sobrescrevendo. (opcional)
+
+#### Sobrecarga
+Sobrecarga de métodos (method overloading) acontece quando dois ou mais métodos têm o mesmo nome, mas diferem na assinatura (quantidade, tipos ou ordem dos parâmetros).
+
+- Pode estar na mesma classe ou em uma classe filha.
+
+- O tipo de retorno pode ser diferente, mas isso não é suficiente para diferenciar métodos (precisa mudar os parâmetros).
+
+- É resolvida em tempo de compilação (compile-time polymorphism).
+
 #### Sealed Classes (Java 17+)
 - As **sealed classes** permitem **controlar quais classes podem estender outra classe**.  
 Elas foram introduzidas no Java 17 para dar mais **segurança**, **clareza** e **controle** em hierarquias de classes.
