@@ -8,3 +8,4 @@ Repositório onde colocarei sintaxe e exemplos
 4. recordEEnum
 5. interfacesFuncionaisELambda
 6. stream
+7. optional
